@@ -55,6 +55,10 @@ class TestLsiModel(unittest.TestCase):
         self.corpus = mmcorpus.MmCorpus(datapath('testcorpus.mm'))
         self.model = lsimodel.LsiModel(self.corpus, num_topics=2)
 
+    def testInit(self):
+        model = lsimodel.LsiModel(id2word=Dictionary.from_corpus(self.corpus), num_topics=2)
+        self.assertEqual(model.docs_processed, 0)
+
     def testTransform(self):
         """Test lsi[vector] transformation."""
         # create the transformation model
